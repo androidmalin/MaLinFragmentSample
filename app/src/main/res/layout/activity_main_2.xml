@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity">
+
+    <!--静态的使用Fragment-->
+    <!--name是必须的必须指明这个Fragment类，否则  Caused by: java.lang.NullPointerException: name == null-->
+    <!--android:name="com.malin.learnfragment.fragment.TitleFragment"-->
+    <fragment
+        android:id="@+id/fragment_title"
+        android:name="com.malin.learnfragment.fragment.TitleFragment"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        tools:layout="@layout/fragment_title" />
+
+
+    <FrameLayout
+        android:id="@+id/id_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_below="@+id/fragment_title"
+        android:background="@android:color/holo_green_dark" />
+
+
+    <include
+        android:id="@+id/bottom_layout"
+        layout="@layout/bottom_four_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+
+        />
+</RelativeLayout>
