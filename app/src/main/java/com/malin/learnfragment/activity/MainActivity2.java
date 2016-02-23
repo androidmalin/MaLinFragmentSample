@@ -60,7 +60,8 @@ public class MainActivity2 extends Activity implements View.OnClickListener {
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         mFragmentOne = new FragmentOne();
-        transaction.replace(R.id.id_content, mFragmentOne);
+        mFragmentOne.setClickEnable();
+        transaction.replace(R.id.frameLayout_content, mFragmentOne);
         transaction.commit();
     }
 
@@ -91,18 +92,53 @@ public class MainActivity2 extends Activity implements View.OnClickListener {
             case R.id.btn_one: {
                 if (mFragmentOne == null) {
                     mFragmentOne = new FragmentOne();
+                    mFragmentOne.setClickEnable();
                 }
-                fgtransaction.replace(R.id.id_content, mFragmentOne);
+                fgtransaction.replace(R.id.frameLayout_content, mFragmentOne);
                 break;
             }
 
             case R.id.btn_two: {
                 if (mFragmentTwo == null) {
                     mFragmentTwo = new FragmentTwo();
+                    mFragmentTwo.setClickEnable();
                 }
-                fgtransaction.replace(R.id.id_content, mFragmentTwo);
+
+                fgtransaction.replace(R.id.frameLayout_content, mFragmentTwo);
                 break;
             }
+
+
+//            case R.id.btn_one: {
+//                if (mFragmentTwo!=null){
+//                    fgtransaction.hide(mFragmentTwo);
+//                }
+//
+//                if (mFragmentOne == null) {
+//                    mFragmentOne = new FragmentOne();
+//                    mFragmentOne.setClickEnable();
+//                    fgtransaction.add(R.id.frameLayout_content, mFragmentOne);
+//                }else{
+//                    fgtransaction.show(mFragmentOne);
+//                }
+//                break;
+//            }
+//
+//            case R.id.btn_two: {
+//
+//                if (mFragmentOne!=null){
+//                    fgtransaction.hide(mFragmentOne);
+//                }
+//
+//                if (mFragmentTwo == null) {
+//                    mFragmentTwo = new FragmentTwo();
+//                    mFragmentTwo.setClickEnable();
+//                    fgtransaction.add(R.id.frameLayout_content,mFragmentTwo);
+//                }else{
+//                    fgtransaction.show(mFragmentTwo);
+//                }
+//                break;
+//            }
 
             default: {
                 break;

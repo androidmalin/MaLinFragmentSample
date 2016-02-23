@@ -33,7 +33,11 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
         bindListener();
         return rootView;
     }
+    private boolean mIsClick = true;
 
+    public  void setClickEnable(){
+        mIsClick = false;
+    }
 
 
     private void initView(View rootView) {
@@ -48,14 +52,23 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
 
+
+//            这里点击时，我们没有使用replace，而是先隐藏了当前的Fragment，
+//            然后添加了FragmentThree的实例，最后将事务添加到回退栈。
+//            这样做的目的是为了给大家提供一种方案：
+//            如果不希望视图重绘该怎么做，请再次仔细看效果图，我们在FragmentTwo的EditText填写的内容，用户Back回来时，数据还在~~~
+
             case R.id.tv_fragment_two: {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                FragmentThree fragmentThree = new FragmentThree();
-                fragmentTransaction.hide(this);
-                fragmentTransaction.add(R.id.id_content_activity_3, fragmentThree, "three");
-                fragmentTransaction.addToBackStack("three_fragment");
-                fragmentTransaction.commit();
+
+                if (mIsClick){
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    FragmentThree fragmentThree = new FragmentThree();
+                    fragmentTransaction.hide(this);
+                    fragmentTransaction.add(R.id.frameLayout_content, fragmentThree, "three");
+                    fragmentTransaction.addToBackStack("two_fragment");
+                    fragmentTransaction.commit();
+                }
                 break;
             }
 

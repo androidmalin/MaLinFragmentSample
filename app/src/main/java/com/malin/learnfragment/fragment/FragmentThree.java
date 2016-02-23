@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.malin.learnfragment.R;
 import com.orhanobut.logger.Logger;
@@ -19,16 +21,28 @@ import com.orhanobut.logger.Logger;
  * 修改时间:
  * 修改备注:
  */
-public class FragmentThree extends Fragment {
+public class FragmentThree extends Fragment implements View.OnClickListener{
 
     private static final String TAG = FragmentThree.class.getSimpleName()+"-->";
+    private TextView mTvFragmentThree;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Logger.d(TAG + "onCreateView");
         View rootView = inflater.inflate(R.layout.fragment_three_layout,null);
+        initView(rootView);
+        bindListener();
         return rootView;
     }
 
+
+
+    private void initView(View rootView) {
+        mTvFragmentThree = (TextView) rootView.findViewById(R.id.tv_fragment_three);
+    }
+
+    private void bindListener() {
+        mTvFragmentThree.setOnClickListener(this);
+    }
 
 
     @Override
@@ -72,5 +86,19 @@ public class FragmentThree extends Fragment {
     public void onDetach() {
         super.onDetach();
         Logger.d(TAG + "onDetach");
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.tv_fragment_three:{
+                Toast.makeText(getActivity(), "FragmentThree", Toast.LENGTH_SHORT).show();
+                break;
+            }
+
+            default:{
+                break;
+            }
+        }
     }
 }

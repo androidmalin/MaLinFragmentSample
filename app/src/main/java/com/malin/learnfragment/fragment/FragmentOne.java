@@ -26,13 +26,20 @@ import com.orhanobut.logger.Logger;
 public class FragmentOne extends Fragment implements View.OnClickListener {
 
 
-    private static final String TAG = FragmentOne.class.getSimpleName() + "-->";
+    private static final String TAG = FragmentOne.class.getSimpleName();
+//    private static final String TAG = FragmentOne.class.getSimpleName();
     private TextView mTextView;
+
+    private boolean isClick = true;
+
+    public  void setClickEnable(){
+        isClick = false;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_one_laytou, null);
-        Logger.d(TAG + "onCreateView");
+        Logger.t(TAG).d(TAG + "-->" + "onCreateView");
         initView(rootView);
         bindListener();
         return rootView;
@@ -51,42 +58,51 @@ public class FragmentOne extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
 
             case R.id.tv_fragment_one: {
-                FragmentManager fragmentManager = getFragmentManager();
 
-                fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
-                    @Override
-                    public void onBackStackChanged() {
-                        Toast.makeText(getActivity(), "FragmentTwo onBackStackChanged", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                if (isClick){
+                    FragmentManager fragmentManager = getFragmentManager();
 
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                FragmentTwo fragmentTwo = new FragmentTwo();
-                fragmentTransaction.replace(R.id.id_content_activity_3, fragmentTwo, "two");
-                fragmentTransaction.addToBackStack("two_fragment");
+                    fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+                        @Override
+                        public void onBackStackChanged() {
+                            Toast.makeText(getActivity(), "FragmentTwo onBackStackChanged", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-                ///////////////////////////////////1111///////////////////////////////////////////////////////////
-                // replace是remove和add的合体
-                //并且如果不添加事务到回退栈，前一个FragmentOne实例会被销毁
-                // FragmentOne-->onPause
-                // FragmentOne-->onStop
-                // FragmentOne-->onDestroyView 与onCreateView想对应，当该Fragment的视图被移除时调用
-                // FragmentOne-->onDestroy
-                // FragmentOne-->onDetach 与onAttach相对应，当Fragment与Activity关联被取消时调用
-                //
-                ///////////////////////////////////2222///////////////////////////////////////////////////////////
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    FragmentTwo fragmentTwo = new FragmentTwo();
+                    fragmentTransaction.replace(R.id.frameLayout_content, fragmentTwo, "two");
+                    fragmentTransaction.addToBackStack("one_fragment");//是否将FragmentOne加入回退栈中
 
-                //添加事务到回退栈
-                // FragmentOne-->onPause
-                // FragmentOne-->onStop
-                // FragmentOne-->onDestroyView 与onCreateView想对应，当该Fragment的视图被移除时调用
-                //调用fragmentTransaction.addToBackStack("");将当前的事务添加到了回退栈，
-                // 所以FragmentOne实例不会被销毁，但是视图层次依然会被销毁，
-                // 即会调用onDestroyView
+//                我们调用fragmentTransaction.addToBackStack("one_fragment");;将当前的事务添加到了回退栈，
+//                所以FragmentOne实例不会被销毁，但是视图层次依然会被销毁，
+//                即会调用onDestroyView和onCreateView，证据就是：仔细看上面的效果图，
+//                我们在跳转前在文本框输入的内容，在用户Back得到第一个界面的时候不见了。
 
 
+                    ///////////////////////////////////1111///////////////////////////////////////////////////////////
+                    // replace是remove和add的合体
+                    //并且如果不添加事务到回退栈，前一个FragmentOne实例会被销毁
+                    // FragmentOne-->onPause
+                    // FragmentOne-->onStop
+                    // FragmentOne-->onDestroyView 与onCreateView想对应，当该Fragment的视图被移除时调用
+                    // FragmentOne-->onDestroy
+                    // FragmentOne-->onDetach 与onAttach相对应，当Fragment与Activity关联被取消时调用
+                    //
+                    ///////////////////////////////////2222///////////////////////////////////////////////////////////
 
-                fragmentTransaction.commit();
+                    //添加事务到回退栈
+                    // FragmentOne-->onPause
+                    // FragmentOne-->onStop
+                    // FragmentOne-->onDestroyView 与onCreateView想对应，当该Fragment的视图被移除时调用
+                    //调用fragmentTransaction.addToBackStack("");将当前的事务添加到了回退栈，
+                    // 所以FragmentOne实例不会被销毁，但是视图层次依然会被销毁，
+                    // 即会调用onDestroyView
+
+
+
+                    fragmentTransaction.commit();
+                }
                 break;
             }
 
@@ -100,43 +116,43 @@ public class FragmentOne extends Fragment implements View.OnClickListener {
     @Override
     public void onPause() {
         super.onPause();
-        Logger.d(TAG + "onPause");
+        Logger.t(TAG).d(TAG +"-->"+ "onPause");
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        Logger.d(TAG + "onStop");
+        Logger.t(TAG).d(TAG +"-->"+ "onStop");
     }
 
 
     @Override
     public void onStart() {
         super.onStart();
-        Logger.d(TAG + "onStart");
+        Logger.t(TAG).d(TAG +"-->"+ "onStart");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Logger.d(TAG + "onResume");
+        Logger.t(TAG).d(TAG +"-->"+ "onResume");
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Logger.d(TAG + "onDestroyView");
+        Logger.t(TAG).d(TAG +"-->"+ "onDestroyView");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Logger.d(TAG + "onDestroy");
+        Logger.t(TAG).d(TAG +"-->"+ "onDestroy");
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        Logger.d(TAG + "onDetach");
+        Logger.t(TAG).d(TAG +"-->"+ "onDetach");
     }
 }

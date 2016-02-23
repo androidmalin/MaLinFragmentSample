@@ -41,7 +41,7 @@ public class MainActivity3 extends Activity {
             }
         });
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.id_content_activity_3, fragmentOne, "one");
+        fragmentTransaction.add(R.id.frameLayout_content, fragmentOne, "one");
         fragmentTransaction.commit();
     }
 

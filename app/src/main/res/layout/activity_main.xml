@@ -8,9 +8,16 @@
     <!--静态的使用Fragment-->
     <!--name是必须的必须指明这个Fragment类，否则  Caused by: java.lang.NullPointerException: name == null-->
     <!--android:name="com.malin.learnfragment.fragment.TitleFragment"-->
+
+    <!--Rendering Problems A <fragment> tag allows a layout file to dynamically include different layouts at runtime. At layout editing time the specific layout to be used is not known. You can choose which layout you would like previewed while editing the layout.-->
+    <!--<fragment com.malin.learnfragment.fragment.TitleFragment ...> (Use @layout/fragment_title, Pick Layout...)-->
+    <!--<fragment com.malin.learnfragment.fragment.ContentFragment ...> (Use @layout/fragment_content, Pick Layout...)-->
+
+    <!--tools:layout="@layout/fragment_title" 加上可以预览效果-->
+
     <fragment
-        android:name="com.malin.learnfragment.fragment.TitleFragment"
         android:id="@+id/fragment_title"
+        android:name="com.malin.learnfragment.fragment.TitleFragment"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         tools:layout="@layout/fragment_title" />

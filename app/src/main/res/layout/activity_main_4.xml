@@ -5,11 +5,11 @@
 
 
     <TextView
-        android:id="@+id/tv_activity_3"
+        android:id="@+id/tv_activity_4"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="left"
-        android:text="MainActivity3"
+        android:text="MainActivity4"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
@@ -17,8 +17,8 @@
 
 
     <FrameLayout
-        android:layout_toRightOf="@+id/tv_activity_3"
-        android:id="@+id/frameLayout_content"
+        android:layout_toRightOf="@+id/tv_activity_4"
+        android:id="@+id/id_content_activity_4"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
 
