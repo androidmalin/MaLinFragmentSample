@@ -3,6 +3,7 @@ package com.malin.learnfragment.activity;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +27,9 @@ public class MainActivity6 extends Activity implements FragmentFive.clickEvent {
 
 
     private static final String TAG = MainActivity6.class.getSimpleName();
-    FragmentFive fragmentFive;
+    private FragmentFive fragmentFive;
+    public static final String BUNDLE_NAME = "malin_bundle";
+    public static final String INTENT_NAME = "malin_intent";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,14 @@ public class MainActivity6 extends Activity implements FragmentFive.clickEvent {
 
     @Override
     public void click(View v) {
-        Toast.makeText(MainActivity6.this, "MainActivity6 fragmentFive click", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(MainActivity6.this, "MainActivity6 fragmentFive click", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(MainActivity6.this,MainActivity7.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putString(BUNDLE_NAME,"from MainActivity6");
+        intent.putExtra(INTENT_NAME,bundle);
+        startActivity(intent);
     }
 
 
