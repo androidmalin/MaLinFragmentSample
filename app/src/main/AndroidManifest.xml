@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
         <activity
 
-            android:name="com.malin.learnfragment.activity.MainActivity">
+            android:name="com.malin.learnfragment.activity.MainActivity6">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
